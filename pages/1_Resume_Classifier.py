@@ -4,6 +4,7 @@ import joblib
 import pandas as pd
 import spacy
 from utils import comma_tokenizer
+from collections import Counter
 
 from spacy.matcher import PhraseMatcher
 from sklearn.linear_model import LogisticRegression
@@ -128,9 +129,21 @@ if st.button("🔍 Predict Job Role"):
             st.markdown("### 🧠 Final Prediction with Weighted Top Skills")
             preds, used_text = predict_with_models(parsed_skills, top_skills)
 
-            for model, role in preds.items():
-                score = match_score(parsed_skills + top_skills, role)
-                st.info(f"🔹 {model}: {role}  🧮 Match Score: {score}")
+            # for model, role in preds.items():
+            #     score = match_score(parsed_skills + top_skills, role)
+            #     st.info(f"🔹 {model}: {role}  🧮 Match Score: {score}")
+            # Majority voting
+            
+            most_common_role = Counter(preds.values()).most_common(1)[0][0]
+
+            # Match score for that role
+            score = match_score(parsed_skills + top_skills, most_common_role)
+
+            # Show single-line result
+            st.markdown(
+                f"<h3 style='color:green;'>✅ You are {score} suitable for <b>{most_common_role.title()}</b> job role</h3>",
+                unsafe_allow_html=True
+            )
 
 # If user selected a target role, show learning suggestions
             if target_role != "None":
