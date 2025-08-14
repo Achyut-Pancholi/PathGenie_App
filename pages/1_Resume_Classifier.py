@@ -140,10 +140,16 @@ if st.button("🔍 Predict Job Role"):
             score = match_score(parsed_skills + top_skills, most_common_role)
 
             # Show single-line result
-            st.markdown(
-                f"<h3 style='color:green;'>✅ You are {score} suitable for <b>{most_common_role.title()}</b> job role</h3>",
-                unsafe_allow_html=True
-            )
+           st.markdown(
+    f"""
+    <h3>
+    ✅ You are 
+    <span style='color:#007BFF; font-weight:bold;'>{score}</span> suitable for 
+    <span style='color:#FF5733; font-weight:bold;'>{most_common_role.title()}</span> job role
+    </h3>
+    """,
+    unsafe_allow_html=True
+)
 
 # If user selected a target role, show learning suggestions
             if target_role != "None":
