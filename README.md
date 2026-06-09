@@ -1,5 +1,7 @@
 # 🚀 PathGenie: Skill-Based Job Recommendation System
 
+Live URL: http://pathgenie-job-recommendeation-system44.streamlit.app/
+
 **PathGenie** is an AI-powered, end-to-end job recommendation platform that leverages supervised and unsupervised machine learning, resume parsing with NLP, and neural networks to recommend the most suitable career paths based on individual skill sets.
 
 > Built with `Streamlit`, `scikit-learn`, `TensorFlow`, and `spaCy`.
